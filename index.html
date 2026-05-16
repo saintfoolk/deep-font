@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="영성센터 깊은샘은 그리스도교 영성 전통의 지혜와 신학, 현대 심리학 및 인문학을 통해 온전한 삶과 일치를 지향합니다."
+      content="영성센터 깊은샘은 그리스도교 영성 전통의 지혜와 신학, 현대 심리학과 인문학을 통해 온전한 삶과 일치를 지향합니다."
     />
     <title>깊은샘 | deep-font</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -16,18 +16,24 @@
         <span>영성센터 깊은샘</span>
         <small>deep-font</small>
       </a>
-      <nav aria-label="주요 메뉴">
+      <nav id="site-nav" aria-label="주요 메뉴">
         <a href="#about">깊은샘 소개</a>
         <a href="#practice">기도와 수행</a>
         <a href="#learning">학습과 세미나</a>
         <a href="#calendar">일정과 신청</a>
         <a href="#contact">문의</a>
       </nav>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="19" y2="6" />
+          <line x1="3" y1="11" x2="19" y2="11" />
+          <line x1="3" y1="16" x2="19" y2="16" />
+        </svg>
+      </button>
     </header>
 
     <main id="home">
       <section class="hero" aria-label="깊은샘 첫 화면">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
           <p class="eyebrow">Christian Spirituality Center</p>
           <h1>
@@ -148,15 +154,15 @@
           <article>
             <span>기도</span>
             <h3>기도의 뿌리와 날개</h3>
-            <p>기도의 전통과 몸의 감각을 함께 살피는 조용한 배움의 시간입니다.</p>
+            <p>기도의 전통과 몸의 감각을 함께 익히는 조용한 배움의 시간입니다.</p>
           </article>
           <article>
             <span>영성</span>
-            <h3>꿈작업과 영성 워크샵</h3>
-            <p>무의식의 언어와 영성의 길을 함께 읽어가는 워크샵입니다.</p>
+            <h3>꿈작업과 영성 워크숍</h3>
+            <p>무의식의 언어와 영성의 길을 함께 읽어가는 워크숍입니다.</p>
           </article>
           <article>
-            <span>세미나</span>
+            <span>인문학</span>
             <h3>인문학과 영성</h3>
             <p>문학, 철학, 심리학의 질문을 통해 삶의 깊이를 배웁니다.</p>
           </article>
@@ -189,8 +195,8 @@
           <h2>일정과 신청</h2>
           <p>
             <span>프로그램과 세미나 일정은 노션 캘린더에 정리합니다.</span>
-            <span>깊은샘의 글과 자료, 기도와 수행 안내도</span>
-            <span>노션에서 함께 살펴볼 수 있습니다.</span>
+            <span>깊은샘의 글과 자료, 기도와 수행 안내를</span>
+            <span>노션에서 함께 둘러볼 수 있습니다.</span>
           </p>
         </div>
         <a
@@ -224,8 +230,49 @@
     </main>
 
     <footer>
-      <p>영성센터 깊은샘 · deep-font</p>
-      <a href="#home">맨 위로</a>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <strong>영성센터 깊은샘</strong>
+            <span>deep-font</span>
+          </div>
+          <nav aria-label="푸터 메뉴">
+            <a href="#about">소개</a>
+            <a href="#practice">기도와 수행</a>
+            <a href="#learning">학습과 세미나</a>
+            <a href="#calendar">일정과 신청</a>
+            <a href="#contact">문의</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 영성센터 깊은샘 · 그리스도교 영성 전통의 지혜를 나눕니다.</p>
+          <a href="#home">맨 위로</a>
+        </div>
+      </div>
     </footer>
+
+    <script>
+      (function () {
+        const toggle = document.querySelector(".nav-toggle");
+        const nav = document.getElementById("site-nav");
+        if (!toggle || !nav) return;
+
+        toggle.addEventListener("click", () => {
+          const isOpen = nav.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", String(isOpen));
+          toggle.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+          document.body.style.overflow = isOpen ? "hidden" : "";
+        });
+
+        nav.querySelectorAll("a").forEach((anchor) => {
+          anchor.addEventListener("click", () => {
+            nav.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "메뉴 열기");
+            document.body.style.overflow = "";
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
